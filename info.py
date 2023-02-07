@@ -34,20 +34,20 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 ADMINS.append("792556413")
 ADMINS.append("1951205538")
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Mhdimran:imrancoc2@cluster0.htn3o3i.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "anuragbot")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Anurag_filesij')
 
 # FSUB
-auth_channel = environ.get('AUTH_CHANNEL')
+auth_channel = environ.get('AUTH_CHANNEL' '-1001651012546')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 # Set to False inside the bracket if you don't want to use Request Channel else set it to Channel ID
-REQ_CHANNEL = environ.get("REQ_CHANNEL", '-1001661327689')
+REQ_CHANNEL = environ.get("REQ_CHANNEL", '-1001651012546')
 REQ_CHANNEL = int(REQ_CHANNEL) if REQ_CHANNEL and id_pattern.search(REQ_CHANNEL) else False
 JOIN_REQS_DB = environ.get("JOIN_REQS_DB", DATABASE_URI)
 
 # Others
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', -1001575525780))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'Cinemaathattakam')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "True")), True)
