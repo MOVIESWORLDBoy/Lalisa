@@ -145,9 +145,11 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("Search Your Own", show_alert=True)
+    return await query.answer("Search Your Own", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
+    if query.message.reply_to_message is None:
+        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
@@ -155,14 +157,14 @@ async def advantage_spoll_choker(bot, query):
     await query.answer('Checking for Movie in database...')
     k = await manual_filters(bot, query.message, text=movie)
     if k == False:
-        files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
-        if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
-        else:
-            k = await query.message.edit("<b><i>Movie Not available Reason\n\n1)O.T.T Or DVD Not Released\n\n2)Type Name With Year\n\n3)Movie Is Not Available in the database Report to Admins\n\nReport to Admin By 👇\n@Report_chubbot</i></b>")
-            await asyncio.sleep(25)
-            await k.delete()
+      files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
+      if files:
+          k = (movie, files, offset, total_results)
+          await auto_filter(bot, query, k)
+      else:
+          k = await query.message.edit("<b><i>Movie Not available Reason\n\n1)O.T.T Or DVD Not Released\n\n2)Type Name With Year\n\n3)Movie Is Not Available in the database Report to Admins\n\nReport to Admin By 👇\n@Report_chubbot</i></b>")
+          await asyncio.sleep(25)
+          await k.delete()
 
 
 @Client.on_callback_query()
