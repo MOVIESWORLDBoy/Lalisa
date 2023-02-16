@@ -144,8 +144,8 @@ async def next_page(bot, query):
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
-     int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("Search Your Own", show_alert=True)
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("okDa", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
@@ -160,10 +160,9 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit("<b><i>Movie Not available Reason\n\n1)O.T.T Or DVD Not Released\n\n2)Type Name With Year\n\n3)Movie Is Not Available in the database Report to Admins\n\nReport to Admin By 👇\n@Report_chubbot</i></b>")
+            k = await query.message.edit('This Movie Not Found In DataBase')
             await asyncio.sleep(25)
             await k.delete()
-
 
 
 @Client.on_callback_query()
