@@ -273,7 +273,7 @@ async def log_file(bot, message):
     try:
         with open("TelegramBot.log", "r") as f:
             logs = f.read()
-        message.reply_text(logs)
+        await message.reply_text(logs)
     except Exception as e:
         await message.reply(str(e))
 
