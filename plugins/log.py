@@ -15,7 +15,7 @@ logging.basicConfig(
 # Initialize your Pyrogram client
 
 # Define a command handler for the "/log" command
-@Client.on_message(filters.command("log"))
+@Client.on_message(pyrogram.filters.command("log"))
 def get_logs(client, message):
     try:
         # Read the contents of the log file
