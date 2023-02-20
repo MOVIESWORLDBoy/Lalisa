@@ -773,15 +773,23 @@ async def auto_filter(client, msg, spoll=False):
             fek = await message.reply_photo(photo="https://telegra.ph/file/82b5bbbab6d5e5593b6b2.jpg", caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(300)
             await fek.delete()
+        if isinstance(msg, CallbackQuery):
+            await msg.answer()
+        else:
             await msg.delete()
-    else:
-        fuk = await message.reply_photo(photo="https://telegra.ph/file/8b42f6caf6ef5fd76766f.jpg", caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(300)
-        await fuk.delete()
-        await msg.delete()
+        else:
+            fuk = await message.reply_photo(photo="https://telegra.ph/file/8b42f6caf6ef5fd76766f.jpg", caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(300)
+            await fuk.delete()
+        if isinstance(msg, CallbackQuery):
+            await msg.answer()
+        else:
+            await msg.delete()
     if spoll:
-        await msg.message.delete()
-
+        if isinstance(msg, CallbackQuery):
+            await msg.answer()
+        else:
+            await msg.delete()
 
 
 async def advantage_spell_chok(msg):
