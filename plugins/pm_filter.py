@@ -132,7 +132,9 @@ async def next_page(bot, query):
              InlineKeyboardButton(f"{math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
              InlineKeyboardButton("ɴᴇxᴛ", callback_data=f"next_{req}_{key}_{n_offset}")
              ],[
-             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')]
+             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')
+             ],[
+                InlineKeyboardButton("Our Movie Channel list", url='https://t.me/PMChannels')]
     else:
         btn.append(
             [
@@ -141,6 +143,8 @@ async def next_page(bot, query):
                 InlineKeyboardButton("ɴᴇxᴛ", callback_data=f"next_{req}_{key}_{n_offset}")
                 ],[
                 InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')
+                ],[
+                InlineKeyboardButton("Our Movie Channel list", url='https://t.me/PMChannels')
             ],
         )
     try:
@@ -725,13 +729,17 @@ async def auto_filter(client, msg, spoll=False):
              InlineKeyboardButton(text=f"1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
              InlineKeyboardButton(text="NEXT", callback_data=f"next_{req}_{key}_{offset}")
              ],[
-             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')]
+             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')
+             ],[
+             InlineKeyboardButton("Our Movie Channel list", url='https://t.me/PMChannels')]
         )
     else:
         btn.append(
             [InlineKeyboardButton(text="1/1", callback_data="pages")
              ],[
-             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')]
+             InlineKeyboardButton("Main Channel", url='https://t.me/PocketMoviesOfficial')
+             ],[
+             InlineKeyboardButton("Our Movie Channel list", url='https://t.me/PMChannels')]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
