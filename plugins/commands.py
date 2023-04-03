@@ -14,6 +14,7 @@ from database.connections_mdb import active_connection
 from plugins.fsub import ForceSub
 import re
 import json
+import subprocess
 import base64
 logger = logging.getLogger(__name__)
 
@@ -267,15 +268,22 @@ async def channel_info(bot, message):
         os.remove(file)
 
 
+import requests as req
+
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
-async def log_file(bot, message):
-    """Send log file"""
-    try:
-        with open("TelegramBot.log", "r") as f:
-            logs = f.read()
-        await message.reply_text(logs)
-    except Exception as e:
-        await message.reply(str(e))
+def semdlog(_, message):
+    x = subprocess.getoutput("tail TelegramBot.log")
+    message.reply_text(paste(x),
+                       reply_markup=InlineKeyboardMarkup([[
+                           InlineKeyboardButton("Open", url=paste(x)),
+                           InlineKeyboardButton("Send", callback_data="send")
+                       ]]))
+
+def paste(text):
+    url = "https://spaceb.in/api/v1/documents/"
+    res = req.post(url, data={"content": text, "extension": "txt"})
+    return f"https://spaceb.in/{res.json()['payload']['id']}"
+
 
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
