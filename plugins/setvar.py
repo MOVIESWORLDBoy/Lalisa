@@ -2,7 +2,7 @@ import heroku3
 from info import ADMINS
 from pyrogram import Client, filters
 
-HRK_API = "eb088c41-a226-4d55-ba70-d8f4370f8780"
+HRK_API = "8e2bd65b-d909-4275-9711-b3d207c4fbba"
 HRK_APP_NAME = "publicautofilter"
 
 heroku_conn = heroku3.from_key(HRK_API)
