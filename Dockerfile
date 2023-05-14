@@ -1,22 +1,22 @@
-FROM python:3.10.8-slim-buster
-
-RUN apt update && apt upgrade -y
-
-RUN apt install git -y
-
-COPY requirements.txt /requirements.txt
-
-RUN cd /
-
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-
-RUN mkdir /Lalisa
+FROM python:3.10
 
 WORKDIR /Lalisa
 
-COPY start.sh /start.sh
+COPY requirements.txt requirements.txt
 
-CMD ["/bin/bash", "/start.sh"]
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+CMD python3 bot.py
+
+
+
+
+
+
+
+
 
 
 
